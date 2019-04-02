@@ -16,7 +16,7 @@ The steps to get set up on github for this class are as follows:
 
     *  Set up your account on the Unix server for CSC 203.  You do this
        by editing the file ".mybashrc" to include the following:
-            source /home/wffoote/public/set_env_305
+            source /home/wffoote/public/set_env_203
 
     *  Wait for the instructor to invite you to the "Students" team.
        If necessary, remind them, and maybe mention that you should be
