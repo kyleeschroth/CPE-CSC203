@@ -5,28 +5,28 @@ public class Lab01
 	// declaring and initializing some variables
 	int x = 5;
 	String y = "hello";
-	double z = "9.8";
+	double z = 9.8;
 	
 	// printing the variables
-	System.out.printIn("x: "+ x + "y: " + y + "z: " + z);
+	System.out.println("x: "+ x + " y: " + y + " z: " + z);
     
 	// a list (make an array in java)
 	int[] nums = { 3, 6, -1, 2 };
-	for (int i = 0, i < 4, i++)
-		System.out.printIn(nums[i]);
+	for (int i = 0; i < 4; i++)
+		System.out.println(nums[i]);
 
 	// call a function
 	String numFound = char_count(y, 'l');
-	System.out.printIn("Found: " + numFound);
+	System.out.println("Found: " + numFound);
 
 	// a counting for loop
 	for (int i = 1; i <= 10; i++)
-		System.out.printIn(i + " ");
+		System.out.print(i + " ");
 
     }
     public static String char_count(String s, char c)
     {
-	int count = 0
+	int count = 0;
 	for (int i = 0; i < s.length(); i ++)
 	{
 		if (s.charAt(i) == c)
