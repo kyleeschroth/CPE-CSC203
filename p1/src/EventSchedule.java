@@ -73,7 +73,6 @@ final class EventSchedule {
      */
     public void processEvents(double advanceToTime)
     {
-        System.out.println("processing");
         assert advanceToTime >= currentTime;
         boolean sort = true;
         EventSchedule schedule = new EventSchedule();
@@ -89,16 +88,15 @@ final class EventSchedule {
                 }
             }
             if ((minEvent.getTime() <= advanceToTime)){
-                System.out.println("execute");
+                currentTime = minEvent.getTime();
                 minEvent.execute(this);
                 pendingEvents.remove(minEvent);
-                currentTime = advanceToTime;
             }
             else{
                sort = false;
-            //break;
+
+        currentTime = advanceToTime; 
             }
-        System.out.println("processing done");
      }
                     
 	/**EventSchedule schedule = new EventSchedule();
