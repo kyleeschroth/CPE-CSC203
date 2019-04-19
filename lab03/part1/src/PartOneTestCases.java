@@ -156,7 +156,7 @@ public class PartOneTestCases
         throws NoSuchMethodException
     {
         final List<String> expectedMethodNames = Arrays.asList(
-            "getTopLeft", "getBotRight");
+            "getTopLeft", "getBottomRight");
 
         final List<Class> expectedMethodReturns = Arrays.asList(
             Point.class, Point.class);

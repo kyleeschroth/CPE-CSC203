@@ -1,3 +1,5 @@
+import java.util.Math;
+
 class Point
 {
 	private final double x; 

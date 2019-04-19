@@ -8,8 +8,8 @@ public class Util{
     }
     public static double perimeter(Rectangle rectangle){
         Point topLeft = rectangle.getTopLeft();
-        Point botRight = rectangle.getBotRight();
-        double perimeter = (2*Math.abs(topLeft.getY() - botRight.getY()) + 2*Math.abs(botRight.getX() - topLeft.getX()));
+        Point bottomRight = rectangle.getBottomRight();
+        double perimeter = (2*Math.abs(topLeft.getY() - bottomRight.getY()) + 2*Math.abs(bottomRight.getX() - topLeft.getX()));
         return perimeter;
     }
     public static double perimeter(Polygon polygon){
