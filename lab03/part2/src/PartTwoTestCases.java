@@ -3,6 +3,7 @@ import java.lang.reflect.Modifier;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import static edu.calpoly.testy.Assert.assertEquals;
@@ -21,7 +22,7 @@ public class PartTwoTestCases
         points.add(new Point(3,1));
         points.add(new Point(1,4));
         points.add(new Point(-1,4));
-        Polygon myPoly = Polygon(points); 
+        Polygon myPoly = new Polygon(points); 
         double d = myPoly.perimeter();
         assertEquals(12.8909345613, d, DELTA);
     }
@@ -72,7 +73,7 @@ public class PartTwoTestCases
         throws NoSuchMethodException
     {
         final List<String> expectedMethodNames = Arrays.asList(
-            "getTopLeft", "getBotRight", "perimeter");
+            "getTopLeft", "getBottomRight", "perimeter");
 
         final List<Class> expectedMethodReturns = Arrays.asList(
             Point.class, Point.class, double.class);
