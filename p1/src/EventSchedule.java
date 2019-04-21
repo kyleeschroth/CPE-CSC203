@@ -95,9 +95,10 @@ final class EventSchedule {
             }
             else{
                sort = false;
-
-        currentTime = advanceToTime; 
             }
+        }
+        currentTime = advanceToTime; 
+            
      }
                     
 	/**EventSchedule schedule = new EventSchedule();
