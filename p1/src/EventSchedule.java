@@ -89,8 +89,9 @@ final class EventSchedule {
             }
             if ((minEvent.getTime() <= advanceToTime)){
                 currentTime = minEvent.getTime();
-                minEvent.execute(this);
                 pendingEvents.remove(minEvent);
+                minEvent.execute(this);
+
             }
             else{
                sort = false;
