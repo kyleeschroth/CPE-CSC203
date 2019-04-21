@@ -91,7 +91,6 @@ final class EventSchedule {
                 pendingEvents.remove(minEvent);
                 minEvent.execute(this);
                 currentTime = minEvent.getTime();
-
             }
             else{
                sort = false;
@@ -99,7 +98,7 @@ final class EventSchedule {
         }
         currentTime = advanceToTime; 
             
-     }
+    
                     
 	/**EventSchedule schedule = new EventSchedule();
 	*for (Event event : pendingEvents)
