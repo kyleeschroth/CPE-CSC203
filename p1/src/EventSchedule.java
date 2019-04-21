@@ -62,7 +62,8 @@ final class EventSchedule {
         {
             if (target.equals(pendingEvents.get(i).getTarget()))
             {
-                pendingEvents.remove(pendingEvents.get(i)); 
+                //pendingEvents.remove(pendingEvents.get(i)); 
+                pendingEvents.remove(i);
             }
         }
     }
