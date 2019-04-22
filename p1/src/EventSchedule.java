@@ -62,10 +62,10 @@ final class EventSchedule {
         {
             if (pendingEvents.get(i).getTarget() != null){
             //if (target.equals(pendingEvents.get(i).getTarget()))
-            }    
-            else if (target == pendingEvents.get(i).getTarget()){
-                //pendingEvents.remove(pendingEvents.get(i)); 
-                    pendingEvents.remove(i);
+                if (target == pendingEvents.get(i).getTarget()){
+                    //pendingEvents.remove(pendingEvents.get(i)); 
+                        pendingEvents.remove(i);
+                }    
             }
         }
     }
