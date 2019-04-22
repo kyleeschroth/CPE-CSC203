@@ -89,17 +89,18 @@ final class EventSchedule {
                 }
             }
             if ((minEvent.getTime() <= advanceToTime)){
+                currentTime = minEvent.getTime();
                 pendingEvents.remove(minEvent);
                 minEvent.execute(this);
-                currentTime = minEvent.getTime();
+                
             }
             else{
                sort = false;
-               currentTime = advanceToTime;
+               //currentTime = advanceToTime;
             }
         }
         currentTime = advanceToTime;
-
+    }
          
             
     
@@ -111,7 +112,7 @@ final class EventSchedule {
 	*	    currentTime = advanceToTime;	
 	*/        
                 
-    }
+    
     
     /**
      * Give the number of events currently scheduled.
