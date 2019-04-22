@@ -79,27 +79,31 @@ final class EventSchedule {
         EventSchedule schedule = new EventSchedule();
         while (sort == true){
             Event minEvent = null;
-            for (Event event : pendingEvents)
-            {
-                if (minEvent == null){
-                    minEvent = event;
-                }
-                else if (event.getTime() < minEvent.getTime()){
-                    minEvent = event;
-                }
-            }
-            if ((minEvent.getTime() <= advanceToTime)){
-                currentTime = minEvent.getTime();
-                pendingEvents.remove(minEvent);
-                minEvent.execute(this);
-                
+            if (pendingEvents.size() == 0){
+                sort = false;
             }
             else{
-               sort = false;
+                for (Event event : pendingEvents)
+                {
+                    if (minEvent == null){
+                        minEvent = event;
+                    }
+                    else if (event.getTime() < minEvent.getTime()){
+                        minEvent = event;
+                    }
+                }
+                if ((minEvent.getTime() <= advanceToTime)){
+                    currentTime = minEvent.getTime();
+                    pendingEvents.remove(minEvent);
+                    minEvent.execute(this);
+                
+                }
+                else{
+                sort = false;
                //currentTime = advanceToTime;
+                }
             }
-        }
-        currentTime = advanceToTime;
+            currentTime = advanceToTime;
     }
          
             
