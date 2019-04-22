@@ -60,10 +60,12 @@ final class EventSchedule {
         int i;
         for (i=0; i < pendingEvents.size(); i++)
         {
+            if (pendingEvents.getTarget() != null){
             //if (target.equals(pendingEvents.get(i).getTarget()))
-            if (target == pendingEvents.get(i).getTarget()){
+                if (target == pendingEvents.get(i).getTarget()){
                 //pendingEvents.remove(pendingEvents.get(i)); 
-                pendingEvents.remove(i);
+                    pendingEvents.remove(i);
+                }
             }
         }
     }
