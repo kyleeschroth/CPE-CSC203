@@ -104,6 +104,7 @@ final class EventSchedule {
                 }
             }
             currentTime = advanceToTime;
+        }
     }
          
             
