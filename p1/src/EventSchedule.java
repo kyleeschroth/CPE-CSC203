@@ -44,8 +44,8 @@ final class EventSchedule {
      */
     public void scheduleEvent(Object target, Action action, double after) {
         assert after >= 0;
-	Event event = new Event(action, getCurrentTime() + after, target); 
-	pendingEvents.add(event);
+	    Event event = new Event(action, getCurrentTime() + after, target); 
+	    pendingEvents.add(event);
 	
     }
     /**
@@ -61,8 +61,7 @@ final class EventSchedule {
         for (i=0; i < pendingEvents.size(); i++)
         {
             //if (target.equals(pendingEvents.get(i).getTarget()))
-            if (target == pendingEvents.get(i).getTarget()))
-            {
+            if (target.equals(pendingEvents.get(i).getTarget())){
                 //pendingEvents.remove(pendingEvents.get(i)); 
                 pendingEvents.remove(i);
             }
