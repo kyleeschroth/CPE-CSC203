@@ -56,9 +56,9 @@ final class EventSchedule {
      */
     public void unscheduleAllEvents(Object target)
     {
-        //assert target != null;
+        assert target != null;
         int i;
-        for (i=0; i < pendingEvents.size(); i++)
+        for (i=pendingEvents.size()-1; i >= 0; i--)
         {
             if (pendingEvents.get(i).getTarget() != null)
             {
