@@ -45,8 +45,8 @@ final class EventSchedule {
      */
     public void scheduleEvent(Object target, Action action, double after) {
         assert after >= 0;
-	Event event = new Event(action, getCurrentTime() + after, target); 
-	pendingEvents.add(event);
+	   Event event = new Event(action, getCurrentTime() + after, target); 
+	   pendingEvents.add(event);
 	
     }
     /**
@@ -59,14 +59,20 @@ final class EventSchedule {
     {
         assert target != null;
         int i;
-        for (i=0; i < pendingEvents.size(); i++)
+        for (i=pendingEvents.size()-1; i >= 0; i--)
         {
-            if (target.equals(pendingEvents.get(i).getTarget()))
+            if (pendingEvents.get(i).getTarget() != null)
             {
-                pendingEvents.remove(pendingEvents.get(i)); 
+            //if (target.equals(pendingEvents.get(i).getTarget()))
+                if (target.equals(pendingEvents.get(i).getTarget()))
+                {
+                    //pendingEvents.remove(pendingEvents.get(i)); 
+                        pendingEvents.remove(i);
+                }    
             }
         }
     }
+ 
     /**
      * Execute all the pending events, in order, until we get to 
      * the time advanceToTime (inclusive).  When this method completes,
@@ -79,26 +85,34 @@ final class EventSchedule {
         EventSchedule schedule = new EventSchedule();
         while (sort == true){
             Event minEvent = null;
-            for (Event event : pendingEvents)
-            {
-                if (minEvent == null){
-                    minEvent = event;
-                }
-                else if (event.getTime() < minEvent.getTime()){
-                    minEvent = event;
-                }
-            }
-            if ((minEvent.getTime() <= advanceToTime)){
-                currentTime = minEvent.getTime();
-                minEvent.execute(this);
-                pendingEvents.remove(minEvent);
+            if (pendingEvents.size() == 0){
+                sort = false;
             }
             else{
-               sort = false;
-
-        currentTime = advanceToTime; 
+                for (Event event : pendingEvents)
+                {
+                    if (minEvent == null){
+                        minEvent = event;
+                    }
+                    else if (event.getTime() < minEvent.getTime()){
+                        minEvent = event;
+                    }
+                }
+                if ((minEvent.getTime() <= advanceToTime)){
+                    currentTime = minEvent.getTime();
+                    pendingEvents.remove(minEvent);
+                    minEvent.execute(this);
+                
+                }
+                else{
+                sort = false;
+               //currentTime = advanceToTime;
+                }
             }
-     }
+            currentTime = advanceToTime;
+        }
+    }
+ 
                     
 	/**EventSchedule schedule = new EventSchedule();
 	*for (Event event : pendingEvents)
