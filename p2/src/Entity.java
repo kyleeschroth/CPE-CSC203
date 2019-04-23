@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Random;
 import edu.calpoly.spritely.Tile;
 import java.util.List;
+import java.util.Random;
 
 /**
  * An entity in our virtual world.  An entity occupies a square
@@ -356,5 +357,41 @@ final class Entity
     {
         return new Entity(EntityKind.VEIN, position, 
                           VirtualWorld.veinTiles, 0, 0, actionPeriod, 0);
+    }
+
+    private void scheduleActions(EventSchedule eventSchedule, WorldModel world)
+    {
+        switch (this.kind)
+        {
+        case MINER_FULL:
+            eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
+            eventSchedule.scheduleEvent(this, createAnimationAction(0), getAnimationPeriod());
+            break;
+
+        case MINER_NOT_FULL:
+            eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
+            eventSchedule.scheduleEvent(this, createAnimationAction(0), getAnimationPeriod());
+            break;
+
+        case ORE:
+            eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
+            break;
+
+        case ORE_BLOB:
+            eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
+            eventSchedule.scheduleEvent(this, createAnimationAction(0), getAnimationPeriod());
+            break;
+
+        case QUAKE:
+            eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
+            eventSchedule.scheduleEvent(this, createAnimationAction(10), getAnimationPeriod());
+            break;
+
+        case VEIN:
+            eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
+            break;
+
+        default:
+        }
     }
 }
