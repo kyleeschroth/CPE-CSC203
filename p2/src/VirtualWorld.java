@@ -74,7 +74,7 @@ public final class VirtualWorld
     public static EventSchedule eventSchedule;
     public static SpriteWindow window;
 
-    public static Tile getImageTile(String imageFileName, char text) {
+    private static Tile getImageTile(String imageFileName, char text) {
         Tile t = null;
         File f = new File(IMAGE_DIR, imageFileName);
         try {
@@ -87,7 +87,7 @@ public final class VirtualWorld
         return t;
     }
 
-    public static void setup()
+    private static void setup()
     {
         window = new SpriteWindow(NAME, WORLD_SIZE);
         window.setFps(30f);
@@ -106,7 +106,7 @@ public final class VirtualWorld
         scheduleInitialActions(model, eventSchedule);
     }
 
-    public static void setupBackground() {
+    private static void setupBackground() {
         Tile grass = getImageTile("grass.png", '.');
         Tile rocks = getImageTile("rocks.png", '=');
         for (int y = 0; y < WORLD_SIZE.height; y++) {
@@ -133,76 +133,76 @@ public final class VirtualWorld
         veinTiles = loadImages("vein", "V");
     }
 
-    public static void createInitialEntities() {
-        addInitial(Functions.createBlacksmith(new Point(0, 11)));
-        addInitial(Functions.createBlacksmith(new Point(0, 29)));
-        addInitial(Functions.createBlacksmith(new Point(19, 14)));
-        addInitial(Functions.createBlacksmith(new Point(19, 29)));
-        addInitial(Functions.createBlacksmith(new Point(20, 0)));
-        addInitial(Functions.createBlacksmith(new Point(39, 0)));
-        addInitial(Functions.createBlacksmith(new Point(39, 14)));
-        addInitial(Functions.createBlacksmith(new Point(39, 29)));
-        addInitial(Functions.createMinerNotFull(2, new Point(12,23), 954, 300));
-        addInitial(Functions.createMinerNotFull(2, new Point(17,22), 982, 310));
-        addInitial(Functions.createMinerNotFull(2, new Point(23,6), 777, 320));
-        addInitial(Functions.createMinerNotFull(2, new Point(24,26), 851, 90));
-        addInitial(Functions.createMinerNotFull(2, new Point(31,15), 933, 95));
-        addInitial(Functions.createMinerNotFull(2, new Point(31,26), 734, 87));
-        addInitial(Functions.createMinerNotFull(2, new Point(37,10), 400, 33));
-        addInitial(Functions.createMinerNotFull(2, new Point(37,18), 888, 100));
-        addInitial(Functions.createMinerNotFull(2, new Point(37,6), 991, 317));
-        addInitial(Functions.createMinerNotFull(2, new Point(5,6), 992, 318));
-        addInitial(Functions.createMinerNotFull(2, new Point(6,25), 930, 106));
-        addInitial(Functions.createMinerNotFull(2, new Point(6,3), 813, 92));
-        addInitial(Functions.createMinerNotFull(2, new Point(7,13), 913, 97));
-        addInitial(Functions.createObstacle(new Point(10, 23)));
-        addInitial(Functions.createObstacle(new Point(10, 24)));
-        addInitial(Functions.createObstacle(new Point(11, 21)));
-        addInitial(Functions.createObstacle(new Point(11, 24)));
-        addInitial(Functions.createObstacle(new Point(11, 25)));
-        addInitial(Functions.createObstacle(new Point(12, 22)));
-        addInitial(Functions.createObstacle(new Point(12, 25)));
-        addInitial(Functions.createObstacle(new Point(12, 26)));
-        addInitial(Functions.createObstacle(new Point(13, 22)));
-        addInitial(Functions.createObstacle(new Point(13, 26)));
-        addInitial(Functions.createObstacle(new Point(14, 23)));
-        addInitial(Functions.createObstacle(new Point(14, 24)));
-        addInitial(Functions.createObstacle(new Point(26, 26)));
-        addInitial(Functions.createObstacle(new Point(27, 25)));
-        addInitial(Functions.createObstacle(new Point(28, 19)));
-        addInitial(Functions.createObstacle(new Point(28, 25)));
-        addInitial(Functions.createObstacle(new Point(29, 20)));
-        addInitial(Functions.createObstacle(new Point(29, 26)));
-        addInitial(Functions.createObstacle(new Point(30, 21)));
-        addInitial(Functions.createObstacle(new Point(31, 22)));
-        addInitial(Functions.createObstacle(new Point(32, 23)));
-        addInitial(Functions.createObstacle(new Point(5, 20)));
-        addInitial(Functions.createObstacle(new Point(5, 21)));
-        addInitial(Functions.createObstacle(new Point(6, 20)));
-        addInitial(Functions.createObstacle(new Point(6, 21)));
-        addInitial(Functions.createObstacle(new Point(7, 20)));
-        addInitial(Functions.createObstacle(new Point(7, 21)));
-        addInitial(Functions.createObstacle(new Point(8, 21)));
-        addInitial(Functions.createObstacle(new Point(8, 22)));
-        addInitial(Functions.createObstacle(new Point(9, 22)));
-        addInitial(Functions.createObstacle(new Point(9, 23)));
-        addInitial(Functions.createVein(new Point(10, 25), 8366));
-        addInitial(Functions.createVein(new Point(14, 22), 8248));
-        addInitial(Functions.createVein(new Point(21, 20), 9294));
-        addInitial(Functions.createVein(new Point(27, 6), 9456));
-        addInitial(Functions.createVein(new Point(28, 23), 13422));
-        addInitial(Functions.createVein(new Point(33, 11), 10278));
-        addInitial(Functions.createVein(new Point(33, 13), 10865));
-        addInitial(Functions.createVein(new Point(33, 3), 11101));
-        addInitial(Functions.createVein(new Point(34, 19), 11702));
-        addInitial(Functions.createVein(new Point(6, 11), 15026));
-        addInitial(Functions.createVein(new Point(7, 11), 9377));
-        addInitial(Functions.createVein(new Point(8, 11), 13146));
+    private static void createInitialEntities() {
+        addInitial(Entity.createBlacksmith(new Point(0, 11)));
+        addInitial(Entity.createBlacksmith(new Point(0, 29)));
+        addInitial(Entity.createBlacksmith(new Point(19, 14)));
+        addInitial(Entity.createBlacksmith(new Point(19, 29)));
+        addInitial(Entity.createBlacksmith(new Point(20, 0)));
+        addInitial(Entity.createBlacksmith(new Point(39, 0)));
+        addInitial(Entity.createBlacksmith(new Point(39, 14)));
+        addInitial(Entity.createBlacksmith(new Point(39, 29)));
+        addInitial(Entity.createMinerNotFull(2, new Point(12,23), 954, 300));
+        addInitial(Entity.createMinerNotFull(2, new Point(17,22), 982, 310));
+        addInitial(Entity.createMinerNotFull(2, new Point(23,6), 777, 320));
+        addInitial(Entity.createMinerNotFull(2, new Point(24,26), 851, 90));
+        addInitial(Entity.createMinerNotFull(2, new Point(31,15), 933, 95));
+        addInitial(Entity.createMinerNotFull(2, new Point(31,26), 734, 87));
+        addInitial(Entity.createMinerNotFull(2, new Point(37,10), 400, 33));
+        addInitial(Entity.createMinerNotFull(2, new Point(37,18), 888, 100));
+        addInitial(Entity.createMinerNotFull(2, new Point(37,6), 991, 317));
+        addInitial(Entity.createMinerNotFull(2, new Point(5,6), 992, 318));
+        addInitial(Entity.createMinerNotFull(2, new Point(6,25), 930, 106));
+        addInitial(Entity.createMinerNotFull(2, new Point(6,3), 813, 92));
+        addInitial(Entity.createMinerNotFull(2, new Point(7,13), 913, 97));
+        addInitial(Entity.createObstacle(new Point(10, 23)));
+        addInitial(Entity.createObstacle(new Point(10, 24)));
+        addInitial(Entity.createObstacle(new Point(11, 21)));
+        addInitial(Entity.createObstacle(new Point(11, 24)));
+        addInitial(Entity.createObstacle(new Point(11, 25)));
+        addInitial(Entity.createObstacle(new Point(12, 22)));
+        addInitial(Entity.createObstacle(new Point(12, 25)));
+        addInitial(Entity.createObstacle(new Point(12, 26)));
+        addInitial(Entity.createObstacle(new Point(13, 22)));
+        addInitial(Entity.createObstacle(new Point(13, 26)));
+        addInitial(Entity.createObstacle(new Point(14, 23)));
+        addInitial(Entity.createObstacle(new Point(14, 24)));
+        addInitial(Entity.createObstacle(new Point(26, 26)));
+        addInitial(Entity.createObstacle(new Point(27, 25)));
+        addInitial(Entity.createObstacle(new Point(28, 19)));
+        addInitial(Entity.createObstacle(new Point(28, 25)));
+        addInitial(Entity.createObstacle(new Point(29, 20)));
+        addInitial(Entity.createObstacle(new Point(29, 26)));
+        addInitial(Entity.createObstacle(new Point(30, 21)));
+        addInitial(Entity.createObstacle(new Point(31, 22)));
+        addInitial(Entity.createObstacle(new Point(32, 23)));
+        addInitial(Entity.createObstacle(new Point(5, 20)));
+        addInitial(Entity.createObstacle(new Point(5, 21)));
+        addInitial(Entity.createObstacle(new Point(6, 20)));
+        addInitial(Entity.createObstacle(new Point(6, 21)));
+        addInitial(Entity.createObstacle(new Point(7, 20)));
+        addInitial(Entity.createObstacle(new Point(7, 21)));
+        addInitial(Entity.createObstacle(new Point(8, 21)));
+        addInitial(Entity.createObstacle(new Point(8, 22)));
+        addInitial(Entity.createObstacle(new Point(9, 22)));
+        addInitial(Entity.createObstacle(new Point(9, 23)));
+        addInitial(Entity.createVein(new Point(10, 25), 8366));
+        addInitial(Entity.createVein(new Point(14, 22), 8248));
+        addInitial(Entity.createVein(new Point(21, 20), 9294));
+        addInitial(Entity.createVein(new Point(27, 6), 9456));
+        addInitial(Entity.createVein(new Point(28, 23), 13422));
+        addInitial(Entity.createVein(new Point(33, 11), 10278));
+        addInitial(Entity.createVein(new Point(33, 13), 10865));
+        addInitial(Entity.createVein(new Point(33, 3), 11101));
+        addInitial(Entity.createVein(new Point(34, 19), 11702));
+        addInitial(Entity.createVein(new Point(6, 11), 15026));
+        addInitial(Entity.createVein(new Point(7, 11), 9377));
+        addInitial(Entity.createVein(new Point(8, 11), 13146));
     }
 
-    public static void addInitial(Entity entity) {
-        assert !Functions.isOccupied(model, entity.position);
-        Functions.addEntity(model, entity);
+    private static void addInitial(Entity entity) {
+        assert !model.isOccupied(entity.position);
+        model.addEntity(entity);
     }
 
     /**
@@ -210,7 +210,7 @@ public final class VirtualWorld
      * characters that serve as the animation for the text 
      * representation of the entity when in text mode.
      */
-    public static List<Tile> loadImages(String fileBasename, String text) {
+    private static List<Tile> loadImages(String fileBasename, String text) {
         int len = text.length();
         List<Tile> result = new ArrayList<Tile>(len);
         if (len == 1) {
@@ -224,12 +224,12 @@ public final class VirtualWorld
         return result;
     }
 
-    public static void scheduleInitialActions(WorldModel model,
+    private static void scheduleInitialActions(WorldModel model,
                                               EventSchedule eventSchedule)
     {
         for (Entity entity : model.entities)
         {
-            Functions.scheduleActions(entity, eventSchedule, model);
+            eventSchedule.scheduleActions(entity, model);
         }
     }
 
@@ -238,7 +238,7 @@ public final class VirtualWorld
      */
     public static void runSimulation() {
         setup();
-        Functions.paint(model, window.getInitialFrame());
+        model.paint(window.getInitialFrame());
         window.start();
         while (true) {
             AnimationFrame frame = window.waitForNextFrame();
@@ -246,7 +246,7 @@ public final class VirtualWorld
                 break;
             }
             eventSchedule.processEvents(window.getTimeSinceStart() * timeScale);
-            Functions.paint(model, frame);
+            model.paint(frame);
             window.showNextFrame();
         }
     }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedList;
 
 /**
  * This data stucture is used to hold the scheduled events that are queued
@@ -115,4 +116,40 @@ final class EventSchedule {
         return pendingEvents.size();
     }
 
+
+    public void scheduleActions(Entity entity,  WorldModel world)
+    {
+        switch (entity.kind)
+        {
+        case MINER_FULL:
+            scheduleEvent(entity, entity.createActivityAction(world), entity.actionPeriod);
+            scheduleEvent(entity, entity.createAnimationAction(0), entity.getAnimationPeriod());
+            break;
+
+        case MINER_NOT_FULL:
+            scheduleEvent(entity, entity.createActivityAction(world), entity.actionPeriod); 
+            scheduleEvent(entity, entity.createAnimationAction(0), entity.getAnimationPeriod());
+            break;
+
+        case ORE:
+            scheduleEvent(entity, entity.createActivityAction(world), entity.actionPeriod);
+            break;
+
+        case ORE_BLOB:
+            scheduleEvent(entity, entity.createActivityAction(world), entity.actionPeriod);
+            scheduleEvent(entity, entity.createAnimationAction(0), entity.getAnimationPeriod());
+            break;
+
+        case QUAKE:
+            scheduleEvent(entity, entity.createActivityAction(world), entity.actionPeriod);
+            scheduleEvent(entity, entity.createAnimationAction(10), entity.getAnimationPeriod());
+            break;
+
+        case VEIN:
+            scheduleEvent(entity, entity.createActivityAction(world), entity.actionPeriod);
+            break;
+
+        default:
+        }
+    }
 }

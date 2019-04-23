@@ -38,6 +38,6 @@ final class Event
         //           EventSchedule?  Think about the promises EventSchedule
         //           makes to the rest of the miner game, and make sure it
         //           keeps its promises while executing events!
-        Functions.executeAction(action, schedule);
+        action.executeAction(schedule);
     }
 }
