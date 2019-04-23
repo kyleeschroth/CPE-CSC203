@@ -132,7 +132,7 @@ public final class VirtualWorld
         oreTiles = loadImages("ore", "$");
         quakeTiles = loadImages("quake", "QqQqQq");
         veinTiles = loadImages("vein", "V");
-        minerFull = loadImages("miner_full", "mM$mM")
+        minerFull = loadImages("miner_full", "mM$mM");
     }
 
     private static void createInitialEntities() {
@@ -231,7 +231,7 @@ public final class VirtualWorld
     {
         for (Entity entity : model.entities)
         {
-            eventSchedule.scheduleActions(entity, model);
+            entity.scheduleActions(eventSchedule, model);
         }
     }
 

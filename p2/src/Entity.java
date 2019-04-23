@@ -79,7 +79,7 @@ final class Entity
                                     50 + rand.nextInt(100));
 
         world.addEntity(blob);
-        eventSchedule.scheduleActions(blob, world);
+        blob.scheduleActions(eventSchedule, world);
     }
 
     public void executeOreBlobActivity(WorldModel world, EventSchedule eventSchedule)
@@ -98,7 +98,7 @@ final class Entity
 
                 world.addEntity(quake);
                 nextPeriod += this.actionPeriod;
-                eventSchedule.scheduleActions(quake, world);
+                quake.scheduleActions(eventSchedule, world);
             }
         }
 
@@ -120,7 +120,7 @@ final class Entity
         if (openPt != null) {
             Entity ore = createOre(openPt, 20000 + rand.nextInt(10000));
             world.addEntity(ore);
-            eventSchedule.scheduleActions(ore, world);
+            ore.scheduleActions(eventSchedule, world);
         }
 
         eventSchedule.scheduleEvent(this,
@@ -164,7 +164,7 @@ final class Entity
             eventSchedule.unscheduleAllEvents(this);
 
             world.addEntity(miner);
-            eventSchedule.scheduleActions(miner, world);
+            miner.scheduleActions(eventSchedule, world);
 
             return true;
         }
@@ -181,7 +181,7 @@ final class Entity
         eventSchedule.unscheduleAllEvents(this);
 
         world.addEntity(miner);
-        eventSchedule.scheduleActions(miner, world);
+        miner.scheduleActions(eventSchedule, world);
     }
 
     private boolean moveToNotFull(Entity miner, WorldModel world, Entity target,  EventSchedule eventSchedule)
@@ -281,9 +281,7 @@ final class Entity
 
     private Entity createMinerFull(int resourceLimit, Point position, int actionPeriod, int animationPeriod)
     {
-        return new Entity(EntityKind.MINER_FULL, position, VirtualWorld.minerFull
-                          resourceLimit, resourceLimit, actionPeriod, 
-                          animationPeriod);
+        return new Entity(EntityKind.MINER_FULL, position, VirtualWorld.minerFull, resourceLimit, resourceLimit, actionPeriod, animationPeriod);
     }
 
     public static Entity createMinerNotFull(int resourceLimit, Point position, int actionPeriod, int animationPeriod)
@@ -358,7 +356,7 @@ final class Entity
                           VirtualWorld.veinTiles, 0, 0, actionPeriod, 0);
     }
 
-    private void scheduleActions(EventSchedule eventSchedule, WorldModel world)
+    public void scheduleActions(EventSchedule eventSchedule, WorldModel world)
     {
         switch (this.kind)
         {
