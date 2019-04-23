@@ -121,7 +121,7 @@ final class EventSchedule {
 	*	    currentTime = advanceToTime;	
 	*/        
                 
-    }
+    
     
     /**
      * Give the number of events currently scheduled.
