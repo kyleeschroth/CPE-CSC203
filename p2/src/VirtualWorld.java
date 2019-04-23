@@ -69,6 +69,7 @@ public final class VirtualWorld
     public static List<Tile> oreTiles;
     public static List<Tile> quakeTiles;
     public static List<Tile> veinTiles;
+    public static List<Tile> minerFull;
 
     public static WorldModel model;
     public static EventSchedule eventSchedule;
@@ -131,6 +132,7 @@ public final class VirtualWorld
         oreTiles = loadImages("ore", "$");
         quakeTiles = loadImages("quake", "QqQqQq");
         veinTiles = loadImages("vein", "V");
+        minerFull = loadImages("miner_full", "mM$mM")
     }
 
     private static void createInitialEntities() {

@@ -281,8 +281,7 @@ final class Entity
 
     private Entity createMinerFull(int resourceLimit, Point position, int actionPeriod, int animationPeriod)
     {
-        return new Entity(EntityKind.MINER_FULL, position, 
-                          VirtualWorld.minerTiles,
+        return new Entity(EntityKind.MINER_FULL, position, VirtualWorld.minerFull
                           resourceLimit, resourceLimit, actionPeriod, 
                           animationPeriod);
     }
