@@ -9,21 +9,6 @@ final class Functions
 {
     public static final Random rand = new Random();
 
-    public static int getAnimationPeriod(Entity entity)
-    {
-        switch (entity.kind)
-        {
-        case MINER_FULL:
-        case MINER_NOT_FULL:
-        case ORE_BLOB:
-        case QUAKE:
-            return entity.animationPeriod;
-        default:
-            throw new UnsupportedOperationException(
-                String.format("getAnimationPeriod not supported for %s",
-                entity.kind));
-        }
-    }
 
     public static void nextImage(Entity entity)
     {
@@ -151,7 +136,7 @@ final class Functions
                                     50 + rand.nextInt(100));
 
         addEntity(world, blob);
-        scheduleActions(blob, eventSchedule, world);
+        blob.scheduleActions(eventSchedule, world);
     }
 
     public static void 
@@ -172,7 +157,7 @@ final class Functions
 
                 addEntity(world, quake);
                 nextPeriod += entity.actionPeriod;
-                scheduleActions(quake, eventSchedule, world);
+                quake.scheduleActions(eventSchedule, world);
             }
         }
 
@@ -198,7 +183,7 @@ final class Functions
         if (openPt != null) {
             Entity ore = createOre(openPt, 20000 + rand.nextInt(10000));
             addEntity(world, ore);
-            scheduleActions(ore, eventSchedule, world);
+            ore.scheduleActions(eventSchedule, world);
         }
 
         eventSchedule.scheduleEvent(entity,
@@ -275,7 +260,7 @@ final class Functions
             eventSchedule.unscheduleAllEvents(entity);
 
             addEntity(world, miner);
-            scheduleActions(miner, eventSchedule, world);
+            miner.scheduleActions(eventSchedule, world);
 
             return true;
         }
@@ -293,7 +278,7 @@ final class Functions
         eventSchedule.unscheduleAllEvents(entity);
 
         addEntity(world, miner);
-        scheduleActions(miner, eventSchedule, world);
+        miner.scheduleActions(eventSchedule, world);
     }
 
     public static boolean 
