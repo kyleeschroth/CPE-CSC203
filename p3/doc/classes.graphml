@@ -272,7 +272,6 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
     </node>
     <node id="n10">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
           <y:Geometry height="172.99022934923426" width="298.60640791067" x="653.2159874253911" y="488.3322534029006"/>
@@ -292,7 +291,6 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
     </node>
     <node id="n11">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
           <y:Geometry height="172.99022934923426" width="317.48534402385144" x="981.822395336061" y="488.3322534029007"/>
@@ -311,7 +309,6 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
     </node>
     <node id="n12">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
           <y:Geometry height="172.99022934923426" width="519.1123817126306" x="865.4161640925" y="691.3224827521349"/>
@@ -328,7 +325,6 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
     </node>
     <node id="n13">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
           <y:Geometry height="172.99022934923426" width="519.1123817126306" x="865.5675404470059" y="1139.542412844022"/>
@@ -338,7 +334,8 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
           <y:UML clipContent="false" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="class" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">-int AnimationPeriod
 -WorldModel world</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+nextImage(): void +createAnimationAction(WorldModel world, int repeatCount)
+            <y:MethodLabel xml:space="preserve">+nextImage(): void 
++createAnimationAction(WorldModel world, int repeatCount)
 + getAnimationPeriod()
 + Alpha() : double </y:MethodLabel>
           </y:UML>
@@ -376,25 +373,8 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e3" source="n3" target="n0">
+    <edge id="e3" source="n10" target="n0">
       <data key="d8" xml:space="preserve"/>
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="32.39011959687335" y="563.8110793865023"/>
-            <y:Point x="500.14495909466075" y="563.8110793865023"/>
-            <y:Point x="500.14495909466075" y="303.2817610245969"/>
-          </y:Path>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="diamond" target="none"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e4" source="n10" target="n0">
-      <data key="d8" xml:space="preserve"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -406,9 +386,8 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e5" source="n11" target="n0">
+    <edge id="e4" source="n11" target="n0">
       <data key="d8" xml:space="preserve"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -420,9 +399,8 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e6" source="n1" target="n12">
+    <edge id="e5" source="n1" target="n12">
       <data key="d8" xml:space="preserve"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -435,9 +413,8 @@ VEIN&lt;BR&gt;</y:AttributeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e7" source="n13" target="n12">
+    <edge id="e6" source="n13" target="n12">
       <data key="d8" xml:space="preserve"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
