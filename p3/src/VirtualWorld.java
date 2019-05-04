@@ -91,7 +91,7 @@ public final class VirtualWorld
         scheduleInitialActions(model, eventSchedule);
     }
 
-    private static void setupBackground() {
+    private void setupBackground() {
         //Tile grass = getImageTile("grass.png", '.');
         //Tile rocks = getImageTile("rocks.png", '=');
         for (int y = 0; y < WORLD_SIZE.height; y++) {
@@ -172,7 +172,7 @@ public final class VirtualWorld
 
     }
 
-    private static void createInitialEntities() {
+    private void createInitialEntities() {
         addInitial(Entity.createBlacksmith(new Point(0, 11)));
         addInitial(Entity.createBlacksmith(new Point(0, 29)));
         addInitial(Entity.createBlacksmith(new Point(19, 14)));
@@ -263,7 +263,7 @@ public final class VirtualWorld
         return result;
     }
 
-    private static void scheduleInitialActions(WorldModel model,
+    private void scheduleInitialActions(WorldModel model,
                                               EventSchedule eventSchedule)
     {
         for (Entity entity : model.entities)
@@ -275,7 +275,7 @@ public final class VirtualWorld
     /**
      * Entry point to run the virtual world simulation.
      */
-    public static void runSimulation() {
+    public void runSimulation() {
         //setup();
         model.paint(window.getInitialFrame());
         window.start();
