@@ -45,9 +45,10 @@ public class Main {
                 usage();
             }
         }
-        runTestsAndExit(); 
+        //runTestsAndExit(); 
         VirtualWorld.timeScale = timeScale;
-        VirtualWorld.runSimulation();
+        VirtualWorld vworld = new VirtualWorld(timeScale); 
+        vworld.runSimulation();
         System.exit(0);
     }
 }
