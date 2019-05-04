@@ -45,6 +45,7 @@ public class Main {
                 usage();
             }
         }
+        runTestsAndExit(); 
         VirtualWorld.timeScale = timeScale;
         VirtualWorld.runSimulation();
         System.exit(0);

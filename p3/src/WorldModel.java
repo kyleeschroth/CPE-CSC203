@@ -3,9 +3,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 import java.util.LinkedList;
+import java.awt.Color; 
+
+import java.lang.Math;
 import edu.calpoly.spritely.Size;
 import edu.calpoly.spritely.Tile;
 import edu.calpoly.spritely.AnimationFrame;
+import edu.calpoly.spritely.SolidColorTile; 
 
 /**
  * Data structures that hold the model of our virtual world.
@@ -18,6 +22,24 @@ final class WorldModel
     public final Tile background[][];
     public final Entity occupant[][];
     public final Set<Entity> entities;
+
+    public double daylightColor; 
+    //public static long currentTimeMillis;
+    public double LastTimeDaylight = 0;
+    public int Period = 1;
+
+    public Size getSize(){
+        return this.size; 
+    }
+
+    public Tile[][] getBackground(){
+        return this.background; 
+    }
+
+    public Entity[][] getOccupant(){
+        return this.occupant; 
+    }
+
 
     public WorldModel(Size gridSize)
     {
@@ -128,10 +150,34 @@ final class WorldModel
             setOccupantCell(pos, null);
         }
     }
+    /*
     public void paint(AnimationFrame frame) {
+        
+        //SolidColorTile daylight = new SolidColorTile(green, "daylight");
+
         for (int y = 0; y < size.height; y++) {
             for (int x = 0; x < size.width; x++) {
-                frame.addTile(x, y, background[y][x]);
+                //System.out.println(background[y][x]);
+                if (background[y][x] != null){
+                    frame.addTile(x, y, background[y][x]);
+                }
+                if ((System.currentTimeMillis() - LastTimeDaylight) > 100){
+                    System.out.println("In if");
+                    this.daylightColor = (0.5 * (1.0 - Math.cos((Math.PI * this.Period * 2))));
+                    System.out.println(Math.cos((Math.PI * this.Period * 2))); 
+                    System.out.println(Math.PI * this.Period * 2); 
+                    System.out.println(Math.PI);
+                    this.Period ++;
+                    Color green = new Color(0, 255, 0, (int) this.daylightColor);
+                    System.out.println(this.daylightColor); 
+                    System.out.println(this.Period); 
+                    SolidColorTile daylight = new SolidColorTile(green, '.');
+                    LastTimeDaylight = System.currentTimeMillis(); 
+
+                    frame.addTile(x, y, daylight);
+
+
+                }
                 Entity occupant = this.occupant[y][x];
                 if (occupant != null) {
                     Tile tile = occupant.getCurrentTile();
@@ -140,6 +186,25 @@ final class WorldModel
             }
         }
     }
+    */
+
+    public void paint(AnimationFrame frame) {
+        for (int y = 0; y < size.height; y++) {
+            for (int x = 0; x < size.width; x++) {
+                //System.out.println(background[y][x]);
+                if (background[y][x] != null){
+                    frame.addTile(x, y, background[y][x]);
+                }
+                //'frame.addTile(x, y, background[y][x]);
+                Entity occupant = this.occupant[y][x];
+                if (occupant != null) {
+                    Tile tile = occupant.getCurrentTile();
+                    frame.addTile(x, y, tile);
+                }
+            }
+        }
+    }
+
 
     private static Entity nearestEntity(List<Entity> entities, Point pos)
     {
@@ -162,6 +227,5 @@ final class WorldModel
             return nearest;
         }
     }
-
 
 }

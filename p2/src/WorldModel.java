@@ -131,6 +131,7 @@ final class WorldModel
     public void paint(AnimationFrame frame) {
         for (int y = 0; y < size.height; y++) {
             for (int x = 0; x < size.width; x++) {
+                System.out.println(background[y][x]);
                 frame.addTile(x, y, background[y][x]);
                 Entity occupant = this.occupant[y][x];
                 if (occupant != null) {

@@ -45,8 +45,8 @@ final class EventSchedule {
      */
     public void scheduleEvent(Object target, Action action, double after) {
         assert after >= 0;
-	   Event event = new Event(action, getCurrentTime() + after, target); 
-	   pendingEvents.add(event);
+	    Event event = new Event(action, getCurrentTime() + after, target); 
+	    pendingEvents.add(event);
 	
     }
     /**

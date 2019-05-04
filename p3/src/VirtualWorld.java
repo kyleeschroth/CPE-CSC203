@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +25,106 @@ public final class VirtualWorld
     public static final String NAME = "Minecraft 2: Electric Boogaloo";
     public static final File IMAGE_DIR = new File("images");
 
-    public static final String[] BACKGROUND = new String[] {
+    public static final String[] BACKGROUND; 
+
+    public static double timeScale;
+
+    public static final List<Tile> blacksmithTiles;
+    public static final List<Tile> blobTiles;
+    public static final List<Tile> minerTiles;
+    public static final List<Tile> obstacleTiles;
+    public static final List<Tile> oreTiles;
+    public static final List<Tile> quakeTiles;
+    public static final List<Tile> veinTiles;
+    public static final List<Tile> minerFullTiles;
+    public static final List<Tile> grassTiles; 
+    public static final List<Tile> rockTiles;
+
+    private static AnimationFrame frame; 
+
+    public static AnimationFrame getFrame(){
+        return frame; 
+    }
+
+    public static WorldModel model;
+    public static EventSchedule eventSchedule;
+    public static SpriteWindow window;
+
+    public static Tile grassTile; 
+    public static Tile rockTile; 
+
+    public static double getTime(){
+        System.out.println(window.getTimeSinceStart()); 
+        return (window.getTimeSinceStart() * timeScale)/1000; 
+    }
+
+    private static Tile getImageTile(String imageFileName, char text) {
+        Tile t = null;
+        File f = new File(IMAGE_DIR, imageFileName);
+        try {
+            t = new ImageTile(f, TILE_SIZE, text);
+        } catch (IOException ex) {
+            System.out.println("Fatal error:  Image not found in " + f);
+            ex.printStackTrace();
+            System.exit(1);
+        }
+        return t;
+    }
+
+    public VirtualWorld(double timeScale)
+    {
+        this.timeScale = timeScale; 
+        window = new SpriteWindow(NAME, WORLD_SIZE);
+        window.setFps(30f);
+        window.setTileSize(TILE_SIZE);
+        System.out.println(NAME + ".  Press 'q' to quit.");
+        window.setKeyTypedHandler((char ch) -> {
+            if (ch == 'q' || ch == 'Q') {
+                window.stop();
+            }
+        });
+        model = new WorldModel(WORLD_SIZE);
+        eventSchedule = new EventSchedule();
+        setupBackground();
+        //loadEntityImages();
+        createInitialEntities();
+        scheduleInitialActions(model, eventSchedule);
+    }
+
+    private static void setupBackground() {
+        //Tile grass = getImageTile("grass.png", '.');
+        //Tile rocks = getImageTile("rocks.png", '=');
+        for (int y = 0; y < WORLD_SIZE.height; y++) {
+            for (int x = 0; x < WORLD_SIZE.width; x++) {
+                char c = BACKGROUND[y].charAt(x);
+                if (c == ' ') {
+                    model.background[y][x] = grassTile;
+                } else if (c == 'R') {
+                    model.background[y][x] = rockTile;
+                } else {
+                    assert false;
+                }
+            }
+        }
+    }
+
+    /*
+    public static void loadEntityImages() {
+        blacksmithTiles = loadImages("blacksmith", "B");
+        blobTiles = loadImages("blob", "===*===*=");
+        minerTiles = loadImages("miner", "mMmMm");
+        obstacleTiles = loadImages("obstacle", "O");
+        oreTiles = loadImages("ore", "$");
+        quakeTiles = loadImages("quake", "QqQqQq");
+        veinTiles = loadImages("vein", "V");
+        minerFullTiles = loadImages("miner_full", "mM$mM");
+        grassTiles = loadImages("grass.png", ".");
+        rockTiles = loadImages("rocks.png", "-");
+    }
+    */
+
+    static{
+        BACKGROUND = new String[]{
         "                   R                    ",
         "                    R                  R",
         " RR   RR   RR                           ",
@@ -57,74 +155,8 @@ public final class VirtualWorld
         "                                        ",
         "                   R                    ",
         "                    R                   "
-    };
+        };
 
-
-    public static double timeScale;
-
-    public static List<Tile> blacksmithTiles;
-    public static List<Tile> blobTiles;
-    public static List<Tile> minerTiles;
-    public static List<Tile> obstacleTiles;
-    public static List<Tile> oreTiles;
-    public static List<Tile> quakeTiles;
-    public static List<Tile> veinTiles;
-    public static List<Tile> minerFull;
-
-    public static WorldModel model;
-    public static EventSchedule eventSchedule;
-    public static SpriteWindow window;
-
-    private static Tile getImageTile(String imageFileName, char text) {
-        Tile t = null;
-        File f = new File(IMAGE_DIR, imageFileName);
-        try {
-            t = new ImageTile(f, TILE_SIZE, text);
-        } catch (IOException ex) {
-            System.out.println("Fatal error:  Image not found in " + f);
-            ex.printStackTrace();
-            System.exit(1);
-        }
-        return t;
-    }
-
-    private static void setup()
-    {
-        window = new SpriteWindow(NAME, WORLD_SIZE);
-        window.setFps(30f);
-        window.setTileSize(TILE_SIZE);
-        System.out.println(NAME + ".  Press 'q' to quit.");
-        window.setKeyTypedHandler((char ch) -> {
-            if (ch == 'q' || ch == 'Q') {
-                window.stop();
-            }
-        });
-        model = new WorldModel(WORLD_SIZE);
-        eventSchedule = new EventSchedule();
-        setupBackground();
-        loadEntityImages();
-        createInitialEntities();
-        scheduleInitialActions(model, eventSchedule);
-    }
-
-    private static void setupBackground() {
-        Tile grass = getImageTile("grass.png", '.');
-        Tile rocks = getImageTile("rocks.png", '=');
-        for (int y = 0; y < WORLD_SIZE.height; y++) {
-            for (int x = 0; x < WORLD_SIZE.width; x++) {
-                char c = BACKGROUND[y].charAt(x);
-                if (c == ' ') {
-                    model.background[y][x] = grass;
-                } else if (c == 'R') {
-                    model.background[y][x] = rocks;
-                } else {
-                    assert false;
-                }
-            }
-        }
-    }
-
-    public static void loadEntityImages() {
         blacksmithTiles = loadImages("blacksmith", "B");
         blobTiles = loadImages("blob", "===*===*=");
         minerTiles = loadImages("miner", "mMmMm");
@@ -132,7 +164,12 @@ public final class VirtualWorld
         oreTiles = loadImages("ore", "$");
         quakeTiles = loadImages("quake", "QqQqQq");
         veinTiles = loadImages("vein", "V");
-        minerFull = loadImages("miner_full", "mM$mM");
+        minerFullTiles = loadImages("miner_full", "mM$mM");
+        grassTiles = loadImages("grass", ".");
+        rockTiles = loadImages("rocks", "-");
+        grassTile = getImageTile("grass.png", '.'); 
+        rockTile = getImageTile("rocks.png", '='); 
+
     }
 
     private static void createInitialEntities() {
@@ -239,16 +276,21 @@ public final class VirtualWorld
      * Entry point to run the virtual world simulation.
      */
     public static void runSimulation() {
-        setup();
+        //setup();
         model.paint(window.getInitialFrame());
         window.start();
         while (true) {
-            AnimationFrame frame = window.waitForNextFrame();
+            frame = window.waitForNextFrame();
             if (frame == null) {
                 break;
             }
-            eventSchedule.processEvents(window.getTimeSinceStart() * timeScale);
             model.paint(frame);
+            // System.out.println(window.getTimeSinceStart()); 
+            eventSchedule.processEvents(window.getTimeSinceStart() * timeScale);
+            Animatable grass = new GrassTile(100, model); 
+            Action grassAction = new AnimationAction(grass, model, 1);
+            eventSchedule.scheduleEvent(null, grassAction, 1); 
+
             window.showNextFrame();
         }
     }

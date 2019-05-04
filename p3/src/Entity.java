@@ -9,7 +9,7 @@ import java.util.Random;
  * on the grid.  It might move around, and interact with other
  * entities in the world.
  */
-final class Entity
+final class Entity implements Animatable
 {
     public EntityKind kind;
     public Point position;
@@ -128,6 +128,7 @@ final class Entity
             this.actionPeriod);
     }
 
+    @Override
     public int getAnimationPeriod()
     {
         switch (this.kind)
@@ -143,6 +144,8 @@ final class Entity
                 this.kind));
         }
     }
+
+    @Override
     public void nextImage()
     {
         this.tileIndex = (this.tileIndex + 1) % this.tiles.size();
@@ -250,14 +253,15 @@ final class Entity
         }
     }
 
-    public Action createActivityAction(WorldModel world)
+    public ActivityAction createActivityAction(WorldModel world)
     {
-        return new Action(ActionKind.ACTIVITY, this, world, 0);
+        return new ActivityAction(this, world, 0);
     }
 
-    public Action createAnimationAction(int repeatCount)
+    @Override
+    public AnimationAction createAnimationAction(WorldModel world, int repeatCount)
     {
-        return new Action(ActionKind.ANIMATION, this, null, repeatCount);
+        return new AnimationAction(this, world, repeatCount);
     }
 
     private Entity createOreBlob(Point position, int actionPeriod, int animationPeriod)
@@ -281,7 +285,7 @@ final class Entity
 
     private Entity createMinerFull(int resourceLimit, Point position, int actionPeriod, int animationPeriod)
     {
-        return new Entity(EntityKind.MINER_FULL, position, VirtualWorld.minerFull, resourceLimit, resourceLimit, actionPeriod, animationPeriod);
+        return new Entity(EntityKind.MINER_FULL, position, VirtualWorld.minerFullTiles, resourceLimit, resourceLimit, actionPeriod, animationPeriod);
     }
 
     public static Entity createMinerNotFull(int resourceLimit, Point position, int actionPeriod, int animationPeriod)
@@ -362,12 +366,12 @@ final class Entity
         {
         case MINER_FULL:
             eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
-            eventSchedule.scheduleEvent(this, createAnimationAction(0), getAnimationPeriod());
+            eventSchedule.scheduleEvent(this, createAnimationAction(world, 0), getAnimationPeriod());
             break;
 
         case MINER_NOT_FULL:
             eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
-            eventSchedule.scheduleEvent(this, createAnimationAction(0), getAnimationPeriod());
+            eventSchedule.scheduleEvent(this, createAnimationAction(world, 0), getAnimationPeriod());
             break;
 
         case ORE:
@@ -376,12 +380,12 @@ final class Entity
 
         case ORE_BLOB:
             eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
-            eventSchedule.scheduleEvent(this, createAnimationAction(0), getAnimationPeriod());
+            eventSchedule.scheduleEvent(this, createAnimationAction(world, 0), getAnimationPeriod());
             break;
 
         case QUAKE:
             eventSchedule.scheduleEvent(this, createActivityAction(world), this.actionPeriod);
-            eventSchedule.scheduleEvent(this, createAnimationAction(10), getAnimationPeriod());
+            eventSchedule.scheduleEvent(this, createAnimationAction(world, 10), getAnimationPeriod());
             break;
 
         case VEIN:
