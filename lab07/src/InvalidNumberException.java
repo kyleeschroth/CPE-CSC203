@@ -1,4 +1,4 @@
-class InvalidNumberException
+public class InvalidNumberException
     extends ScannerException
 {
 }

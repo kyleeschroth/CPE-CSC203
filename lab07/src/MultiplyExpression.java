@@ -1,6 +1,6 @@
 //class MultiplyExpression implements Expression
 
-class MultiplyExpression extends BinaryExpression
+public class MultiplyExpression extends BinaryExpression
 {
     //private final Expression lft;
     //private final Expression rht;

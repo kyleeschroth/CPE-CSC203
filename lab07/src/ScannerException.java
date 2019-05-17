@@ -1,4 +1,4 @@
-class ScannerException
+public class ScannerException
     extends Exception
 {
 }

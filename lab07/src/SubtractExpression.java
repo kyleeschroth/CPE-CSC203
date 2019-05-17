@@ -1,6 +1,6 @@
 //class SubtractExpression implements Expression
 
-class SubtractExpression extends BinaryExpression
+public class SubtractExpression extends BinaryExpression
 {
     //private final Expression lft;
     //private final Expression rht;

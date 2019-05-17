@@ -1,6 +1,6 @@
 //class DivideExpression implements Expression
 
-class DivideExpression extends BinaryExpression
+public class DivideExpression extends BinaryExpression
 {
     //private final Expression lft;
     //private final Expression rht;

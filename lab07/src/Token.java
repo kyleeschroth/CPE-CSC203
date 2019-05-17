@@ -1,4 +1,4 @@
-class Token
+public class Token
 {
     private final String lexeme;
     private final int code;

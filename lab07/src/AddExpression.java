@@ -1,6 +1,6 @@
 //class AddExpression implements Expression
 
-class AddExpression extends BinaryExpression
+public class AddExpression extends BinaryExpression
 {
     //private final Expression lft;
     //private final Expression rht;

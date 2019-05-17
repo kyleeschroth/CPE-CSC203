@@ -1,4 +1,4 @@
-class NegationExpression
+public class NegationExpression
     implements Expression
 {
     private final Expression opnd;

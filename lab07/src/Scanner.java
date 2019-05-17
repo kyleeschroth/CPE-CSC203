@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-class Scanner
+public class Scanner
 {
     private final CharReader in = new CharReader(
         new BufferedReader(new InputStreamReader(System.in)));

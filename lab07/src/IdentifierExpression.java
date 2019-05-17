@@ -1,4 +1,4 @@
-class IdentifierExpression
+public class IdentifierExpression
     implements Expression
 {
     private final String id;

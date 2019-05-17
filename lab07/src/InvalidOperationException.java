@@ -1,4 +1,4 @@
-class InvalidOperationException
+public class InvalidOperationException
     extends Exception
 {
     public InvalidOperationException(final String msg)

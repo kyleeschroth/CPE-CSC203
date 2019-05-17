@@ -1,4 +1,4 @@
-class Assignment
+public class Assignment
     implements Operation
 {
     private final String id;

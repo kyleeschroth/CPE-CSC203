@@ -1,4 +1,4 @@
-class InvalidCharacterException
+public class InvalidCharacterException
     extends ScannerException
 {
 }

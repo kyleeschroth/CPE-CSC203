@@ -1,4 +1,4 @@
-class DoubleConstantExpression
+public class DoubleConstantExpression
     implements Expression
 {
     private final double val;
