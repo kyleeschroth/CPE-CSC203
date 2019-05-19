@@ -51,8 +51,8 @@ public final class VirtualWorld
     public static EventSchedule eventSchedule;
     public static SpriteWindow window;
 
-    public static Tile grassTile; 
-    public static Tile rockTile; 
+    //public static Tile grassTile; 
+    //public static Tile rockTile; 
 
     public static double getTime(){
         //System.out.println(window.getTimeSinceStart()); 
@@ -93,15 +93,15 @@ public final class VirtualWorld
     }
 
     private void setupBackground() {
-        //Tile grass = getImageTile("grass.png", '.');
-        //Tile rocks = getImageTile("rocks.png", '=');
+        Tile grass = getImageTile("grass.png", '.');
+        Tile rocks = getImageTile("rocks.png", '=');
         for (int y = 0; y < WORLD_SIZE.height; y++) {
             for (int x = 0; x < WORLD_SIZE.width; x++) {
                 char c = BACKGROUND[y].charAt(x);
                 if (c == ' ') {
-                    model.background[y][x] = grassTile;
+                    model.background[y][x] = grass;
                 } else if (c == 'R') {
-                    model.background[y][x] = rockTile;
+                    model.background[y][x] = rocks;
                 } else {
                     assert false;
                 }
@@ -168,8 +168,8 @@ public final class VirtualWorld
         minerFullTiles = Collections.unmodifiableList(loadImages("miner_full", "mM$mM"));
         grassTiles = Collections.unmodifiableList(loadImages("grass", "."));
         rockTiles = Collections.unmodifiableList(loadImages("rocks", "-"));
-        grassTile = Collections.unmodifiableList(getImageTile("grass.png", '.')); 
-        rockTile = Collections.unmodifiableList(getImageTile("rocks.png", '=')); 
+        //grassTile = Collections.unmodifiableList(getImageTile("grass.png", '.')); 
+        //rockTile = Collections.unmodifiableList(getImageTile("rocks.png", '=')); 
     }
 
     private void createInitialEntities() {
