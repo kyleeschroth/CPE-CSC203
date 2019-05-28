@@ -1,5 +1,4 @@
 import edu.calpoly.spritely.Tile;
-
 import java.util.List;
 
 public abstract class EntityMoves extends EntityAnimation{
@@ -16,11 +15,11 @@ public abstract class EntityMoves extends EntityAnimation{
         eventSchedule.scheduleEvent(this, createAnimationAction(world, 0), getAnimationPeriod());
     }
     */
-
     protected abstract boolean moveTo(WorldModel world, Entity target, EventSchedule eventSchedule); 
 
     public Point nextPosition(WorldModel world, Point destPos)
     {
+        /*
         int horiz = Integer.signum(destPos.getX() - this.position.getX());
         Point newPos = new Point(this.position.getX() + horiz,
             this.position.getY());
@@ -39,9 +38,38 @@ public abstract class EntityMoves extends EntityAnimation{
                 newPos = this.position;
             }
         }
-
         return newPos;
+        */
+        List<Point> path = singlePathing.computePath(position, destPos, canPassThrough, 
+            p -> !world.isOccupied(p) && world.withinBounds(p), stepsFromTo(), 
+            potentialNeighbors());
+
+        if (path == null || path.isEmpty()) {
+            return this.getPosition(); 
+        }
+        else{
+            return path.get(0);
+        }
+
     }
 
     protected abstract boolean nextPosCondition(WorldModel world, Point newPos);
+
+    private static PathingStrategy singlePathing = new SingleStepPathingStrategy(); 
+
+    protected abstract boolean canPassThrough(WorldModel world, Point point); 
+
+    private static List<Point> potentialNeighbors(Point point){
+        List<Point> neighbors = new ArrayList<>; 
+        neighbors.add(new Point(point.getX(), point.getY() + 1));
+        neighbors.add(new Point(point.getX(), point.getY() - 1));
+        neighbors.add(new Point(point.getX() + 1, point.getY())); 
+        neighbors.add(new Point(point.getX() - 1, point.getY())); 
+        return neighbors; 
+    }
+
+    private static int stepsFromTo(Point p1, Point p2){
+        return Math.abs(p1.getX() - p2.getX(), p1.getY() - p2.getY()); 
+    }
+
 }

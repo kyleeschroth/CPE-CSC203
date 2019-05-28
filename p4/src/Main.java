@@ -41,6 +41,7 @@ public class Main {
                 timeScale = 10.0;
             } else if ("-test".equals(arg)) {
                 runTestsAndExit();
+                //runPathTestsAndExit();
             } else {
                 usage();
             }
