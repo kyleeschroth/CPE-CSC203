@@ -39,7 +39,7 @@ import edu.calpoly.spritely.AnimationFrame;
 
 public class DebugGrid {
 
-    public final static boolean ENABLED = true;
+    public final static boolean ENABLED = false;
 
     public final static Tile BACKGROUND_TILE;
     public final static Tile OBSTACLE_TILE;
