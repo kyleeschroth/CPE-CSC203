@@ -1,6 +1,9 @@
 import edu.calpoly.spritely.Tile;
 
 import java.util.List;
+import java.lang.Math; 
+
+import java.util.ArrayList; 
 
 public abstract class EntityMoves extends EntityAnimation{
 
@@ -21,6 +24,7 @@ public abstract class EntityMoves extends EntityAnimation{
 
     public Point nextPosition(WorldModel world, Point destPos)
     {
+        /*
         int horiz = Integer.signum(destPos.getX() - this.position.getX());
         Point newPos = new Point(this.position.getX() + horiz,
             this.position.getY());
@@ -39,9 +43,37 @@ public abstract class EntityMoves extends EntityAnimation{
                 newPos = this.position;
             }
         }
-
         return newPos;
+        */
+        List<Point> path = aStar.computePath(position, destPos, 
+            p -> canPassThrough(world, p) && world.withinBounds(p), 
+            EntityMoves::potentialNeighbors, EntityMoves::stepsFromTo);
+
+        if (path == null || path.isEmpty()) {
+            return this.getPosition(); 
+        }
+        else{
+            return path.get(0);
+        }
+
     }
 
     protected abstract boolean nextPosCondition(WorldModel world, Point newPos);
+
+    private static PathingStrategy aStar = new AStarPathingStrategy(); 
+
+    protected abstract boolean canPassThrough(WorldModel world, Point point); 
+
+    private static List<Point> potentialNeighbors(Point point){
+        List<Point> neighbors = new ArrayList<>(4); 
+        neighbors.add(new Point(point.getX(), point.getY() + 1));
+        neighbors.add(new Point(point.getX(), point.getY() - 1));
+        neighbors.add(new Point(point.getX() + 1, point.getY())); 
+        neighbors.add(new Point(point.getX() - 1, point.getY())); 
+        return neighbors; 
+    }
+
+    private static int stepsFromTo(Point p1, Point p2){
+        return Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY()); 
+    }
 }

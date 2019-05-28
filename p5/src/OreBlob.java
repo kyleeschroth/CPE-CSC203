@@ -64,4 +64,13 @@ public class OreBlob extends EntityMoves{
 
         return (occupant != null && !(occupant instanceof Ore));
     }
+
+    @Override
+    protected boolean canPassThrough(WorldModel world, Point next) {
+            if (world.getOccupant(next) instanceof Ore || world.getOccupant(next) == null) {
+                return true;
+        }
+            return false;
+    }
+
 }

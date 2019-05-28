@@ -35,6 +35,11 @@ public abstract class EntityMiner extends EntityMoves {
 		return world.isOccupied(newPos); 
 	}
 
+	@Override
+    protected final boolean canPassThrough(final WorldModel world, final Point newPos) {
+        return !world.isOccupied(newPos);
+    }
+
 
 
 

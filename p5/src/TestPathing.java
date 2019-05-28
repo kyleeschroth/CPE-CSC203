@@ -35,6 +35,32 @@ public class TestPathing {
         ".....G"
     };
 
+    private final static String[] NUMBERFOUR = {
+        "S...",
+        "....",
+        "XXXX",
+        "....", 
+        "...G"
+    }; 
+
+    private final static String[] NUMBERFIVE = {
+        "...............",
+        "...............",
+        "..G............",
+        "...............",
+        "XXXXXXXXXX.....", 
+        "...............",
+        "....XXXXXXXXXXX", 
+        "...............",
+        "......XXXXXXXXX",
+        ".....X......S..",
+        "......X........",
+        ".....X.........",
+        "....X..........",
+        ".....XXXXXXXXX.",
+        "..............."
+    };
+
     private final PathingStrategy strategy;
     private final DebugGrid debug;
     private final Size gridSize;
@@ -275,6 +301,8 @@ public class TestPathing {
         (new TestPathing(VERY_SIMPLE, strategy)).test();
         (new TestPathing(VERY_SIMPLE_BLOCKED, strategy)).test();
         (new TestPathing(SIMPLE, strategy)).test();
+        (new TestPathing(NUMBERFOUR, strategy)).test();
+        (new TestPathing(NUMBERFIVE, strategy)).test();
         System.out.println();
         System.out.println("80x50 grid with no obstacles:");
         (new TestPathing(new Size(70, 50), new Point(1, 1),

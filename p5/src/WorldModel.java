@@ -73,7 +73,7 @@ final class WorldModel
         return withinBounds(pos) && getOccupantCell(pos) != null;
     }
 
-    private boolean withinBounds(Point pos) //static so isOccuppied can access it
+    public boolean withinBounds(Point pos) //static so isOccuppied can access it
     {
         return pos.getY() >= 0 && pos.getY() < this.size.height &&
             pos.getX() >= 0 && pos.getX() < this.size.width;

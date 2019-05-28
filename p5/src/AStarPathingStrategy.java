@@ -68,7 +68,7 @@ public class AStarPathingStrategy implements PathingStrategy{
 			if (DebugGrid.ENABLED) paintDebug(open, closed);
 			
 		}
-		return result; 
+		return Collections.emptyList(); 
 	}
 
 	public List<Point> reconstructPath(Map<Point, Point> cameFrom, Point current){
@@ -82,18 +82,19 @@ public class AStarPathingStrategy implements PathingStrategy{
 		return totalPath; 
 	}
 
-	protected double costEstimate(Point start, Point end, int est){
-		return est * 1.05; 
+	protected double costEstimate(Point start, Point end, int steps){
+		return steps * 1.05; 
 	}
 
 	private void paintDebug(final Iterable<Point> open, final Iterable<Point> closed) {
-        if (grid == null) return;
+        if (grid == null) return; 
         	for (Point p : open) {
             	grid.setGridValue(p, DebugGrid.OPEN_SET_TILE);
         	}
         	for (Point p : closed) {
             	grid.setGridValue(p, DebugGrid.CLOSED_SET_TILE);
         	}
+        
         grid.showFrame();
     }
 	/*
