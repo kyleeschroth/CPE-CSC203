@@ -62,7 +62,7 @@ public class Main {
         
         List<List<MyMapEntry<Point, Integer>>> buckets = pointCounts.getBuckets();
         for (int i = 0; i < buckets.size(); i++) {
-              ArrayList<MyMapEntry<Point, Integer>> sorted = new ArrayList<>(buckets.get(i));
+            ArrayList<MyMapEntry<Point, Integer>> sorted = new ArrayList<>(buckets.get(i));
             sorted.sort(sorter);
             System.out.println("    bucket " + i + " contains " + sorted);
         }
