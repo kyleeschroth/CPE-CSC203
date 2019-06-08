@@ -1,0 +1,9 @@
+
+
+1. I can trigger the event by clicking any part of the screen
+
+2. The 3x3 grid surrounding the click turn into rainbows, cow spawns and attacks not full miners
+
+3. The miners die and turn into cows
+
+4. The new cow goes and attacks other miners until there aren't anymore
